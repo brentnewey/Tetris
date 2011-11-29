@@ -1,0 +1,18 @@
+This is a C implementation of the popular game Tetris.
+
+Requirements: GCC, Ncurses (if using the terminal version, incomplete), SDL and SDL TTF library (if using the graphical version, recommended), libfreetype.
+
+To get these on ubuntu, use the following command:
+
+sudo apt-get install build-essential libncurses5-dev libsdl1.2-dev libsdl-ttf2.0-dev libfreetype6-dev
+
+Once you have these libraries, simply type "make" in the tetris directory.
+
+To play, run either the tetris_sdl or tetris_ncurses executables.
+
+Controls:
+
+Left, Right, and Down Arrows: Move piece
+Up Arrow: Rotate piece
+Space: Drop piece 
+Q: Quit
