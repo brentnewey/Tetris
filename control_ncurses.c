@@ -13,29 +13,28 @@ void GameOver() {
 
 void SetClock(void) {
   start_interval = clock();
-  if(level < 10)
-    end_interval =
-      start_interval + CLOCKS_PER_SEC * (1.0 - level * 7.0 / 80.0);
-  else
+  if(level < 10) {
+    // Make level 0 much faster, and scale up to the same speed at level 10 as before
+    double slowest = 0.5; // Level 0: half the original wait
+    double fastest = 1.0 - 9 * 7.0 / 80.0; // Level 9: same as before
+    double base = slowest + (fastest - slowest) * (level / 9.0);
+    end_interval = start_interval + CLOCKS_PER_SEC * base;
+  } else {
     end_interval = start_interval + CLOCKS_PER_SEC * (1.0 / 8.0) -
       CLOCKS_PER_SEC * (1.0 / 8.0) * ((level - 10.0) / 10.0);
+  }
 }
 
 int control_loop() {
 
   int score_tally, score_tally2;
 
-  struct timespec *sleep_time, *return_time;
-  sleep_time = malloc(sizeof(struct timespec*));
-  sleep_time->tv_sec = 0;
-  sleep_time->tv_nsec = 1;
+  struct timespec sleep_time = {0, 1};
 
   keypad(stdscr,true);
   while (doloop) {
-    
     SetClock();
     while(start_interval<end_interval) {
-
       current_getch = getch();
       if ('q'==current_getch) doloop = 0;
       if (KEY_LEFT==current_getch && !pause) {
@@ -83,13 +82,15 @@ int control_loop() {
 	if (lines_cleared/10 > level) level++;
 	if (!GenerateTetrad()) GameOver();
 	UpdateDisplay();
-
       }
       else if('p'==current_getch){
 	pause = !pause;
       }
       if(!pause) start_interval=clock();
-      nanosleep(sleep_time, return_time);
+      nanosleep(&sleep_time, NULL);
+    }
+    if (current_getch == 'q') {
+        doloop = 0;
     }
     if(MadeContact()) {
       SolidifyTetrad();
@@ -103,7 +104,6 @@ int control_loop() {
       ShiftTetradDown();
     }
     UpdateDisplay();
-
   }
   endwin();
   printf("Bye!\n");
