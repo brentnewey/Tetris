@@ -493,10 +493,7 @@ void NukeLines() {
 	int i;
 	int nuke_lines = 0;
 
-	struct timespec *sleep_time, *return_time;
-	sleep_time = malloc(sizeof(struct timespec*));
-	sleep_time->tv_sec = 0;
-	sleep_time->tv_nsec = 250000000;
+	struct timespec sleep_time = {0, 250000000L};
 
 	for(i = 0; i < PIPE_H; i++) {
 		if(IsLineFull(i)) {
@@ -511,7 +508,7 @@ void NukeLines() {
 	}
 	SDL_Flip(screen);
 	if(nuke_lines)
-	  nanosleep(sleep_time, return_time);
+	  nanosleep(&sleep_time, NULL);
 }
 
 void PauseDisplay() {

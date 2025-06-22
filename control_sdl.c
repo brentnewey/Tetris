@@ -31,7 +31,7 @@ void SetClock() {
 
 int ControlLoop() {
 
-  struct timespec *sleep_time, *return_time;
+  struct timespec sleep_time = {0, 1};
 
   lines_cleared =  INITIAL_LINES_CLEARED;
   score = INITIAL_SCORE;
@@ -41,10 +41,6 @@ int ControlLoop() {
   wait = 0;
   top = 1;
 
-  sleep_time = malloc(sizeof(struct timespec*));
-  sleep_time->tv_sec = 0;
-  sleep_time->tv_nsec = 1;
-  
   while (1) {
     SetClock();
 
@@ -152,7 +148,7 @@ int ControlLoop() {
       if(!pause) {
 	start_interval = top ? end_interval : SDL_GetTicks();
       }
-      nanosleep(sleep_time, return_time);
+      nanosleep(&sleep_time, NULL);
     }
     
     if(MadeContact() && !EndPlay()) return 0;
