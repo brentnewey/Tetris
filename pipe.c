@@ -1,5 +1,15 @@
 #include "pipe.h"
 
+int current_tetrad, next_tetrad,
+  current_orientation, cx, cy, s1x, s2x, s3x, s1y, s2y, s3y, s1t, s2t, s3t,
+  s4t, pipe_last_x, pipe_last_y, score, level, lines_cleared;
+
+int grid[PIPE_W][PIPE_H],
+  next_grid[PREVIEW_W][PREVIEW_H],
+  buffer_grid[PIPE_W][PIPE_BUFFER_H];
+
+struct tetrad_definition tetrad_definitions[TETRAD_TYPE_COUNT];
+
 void ShiftTetradDown() {
   int i, j;
 

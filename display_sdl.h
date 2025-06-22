@@ -49,12 +49,12 @@
 
 #define DEFAULT_FONT "Amerika Sans.ttf"
 
-char *font_string;
-int display_tetris, preview_pane_left_edge, score_w, zero_w, font_h;
-Uint32 level_colors[21][7];
-char *level_names[21];
-SDL_Surface *screen, *level_text, *lines_text, *score_text;
-TTF_Font *font;
+extern char *font_string;
+extern int display_tetris, preview_pane_left_edge, score_w, zero_w, font_h;
+extern Uint32 level_colors[21][7];
+extern char *level_names[21];
+extern SDL_Surface *screen, *level_text, *lines_text, *score_text;
+extern TTF_Font *font;
 
 void DrawBox(int left_x, int right_x, int upper_y, int lower_y), 
   InitializeDisplay(),

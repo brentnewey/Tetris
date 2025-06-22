@@ -1,0 +1,11 @@
+# Ignore object files
+*.o
+
+# Ignore executables
+/tetris_ncurses
+/tetris_sdl
+
+# Ignore backup and temporary files
+*~
+
+# Ignore other build artifacts (if any) 

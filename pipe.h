@@ -29,15 +29,13 @@
 /* cx, cy = pivot coordinates
    sXx, sXy = other three squares coordinates
    sXt = display type for square */
-int current_tetrad, next_tetrad,
+extern int current_tetrad, next_tetrad,
   current_orientation, cx, cy, s1x, s2x, s3x, s1y, s2y, s3y, s1t, s2t, s3t,
   s4t, pipe_last_x, pipe_last_y, score, level, lines_cleared;
 
-
-int grid[PIPE_W][PIPE_H],
+extern int grid[PIPE_W][PIPE_H],
   next_grid[PREVIEW_W][PREVIEW_H],
   buffer_grid[PIPE_W][PIPE_BUFFER_H];
-
 
 struct tetrad_orientation {
   int s1x, s1y, s2x, s2y, s3x, s3y;
@@ -61,7 +59,7 @@ enum orientations {
   base = 0, clockwise = 1, flipped = 2, counter_clockwise = 3
 };
 
-struct tetrad_definition tetrad_definitions[TETRAD_TYPE_COUNT];
+extern struct tetrad_definition tetrad_definitions[TETRAD_TYPE_COUNT];
 
 void ShiftTetradDown(),
   ShiftTetradLeft(),

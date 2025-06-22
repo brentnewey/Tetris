@@ -7,11 +7,10 @@
 
 #include "pipe.h"
 
-bool doloop, pause;
+extern bool doloop, pause;
 
-clock_t start_interval, end_interval;
-
-int current_getch;
+extern clock_t start_interval, end_interval;
+extern int current_getch;
 
 void GameOver();
 void SetClock(void);

@@ -3,6 +3,10 @@
 
 #define BASE_SPEED 1000
 
+int pause, wait, top;
+Uint32 start_interval, end_interval, start_wait, end_wait, paused_time;
+SDL_Event event;
+
 int GameOver() {
   return 0;
 }

@@ -13,9 +13,9 @@
 #define INITIAL_LINES_CLEARED 0
 #define INITIAL_LEVEL 0
 
-int pause, wait, top;
-Uint32 start_interval, end_interval, start_wait, end_wait, paused_time;
-SDL_Event event;
+extern int pause, wait, top;
+extern Uint32 start_interval, end_interval, start_wait, end_wait, paused_time;
+extern SDL_Event event;
 
 int GameOver(), ControlLoop(), EndPlay();
 

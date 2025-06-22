@@ -1,6 +1,10 @@
 #include "control_ncurses.h"
 #include "display_ncurses.h"
 
+bool doloop, pause;
+clock_t start_interval, end_interval;
+int current_getch;
+
 void GameOver() {
   endwin();
   printf("GAME OVER\n");

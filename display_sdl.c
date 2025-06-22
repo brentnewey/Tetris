@@ -2,6 +2,13 @@
 
 SDL_Color textColor = {255, 255, 255};
 
+char *font_string;
+int display_tetris, preview_pane_left_edge, score_w, zero_w, font_h;
+Uint32 level_colors[21][7];
+char *level_names[21];
+SDL_Surface *screen, *level_text, *lines_text, *score_text;
+TTF_Font *font;
+
 void SetPixel2(int x, int y, Uint32 color) {
   Uint32 *pixmem32;
   pixmem32 = (Uint32*) screen->pixels + (S_WDT * y) + x;
